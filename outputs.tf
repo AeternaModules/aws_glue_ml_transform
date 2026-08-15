@@ -40,7 +40,7 @@ output "glue_ml_transforms_number_of_workers" {
 }
 output "glue_ml_transforms_parameters" {
   description = "Map of parameters values across all glue_ml_transforms, keyed the same as var.glue_ml_transforms"
-  value       = { for k, v in aws_glue_ml_transform.glue_ml_transforms : k => v.parameters if v.parameters != null && length(v.parameters) > 0 }
+  value       = { for k, v in aws_glue_ml_transform.glue_ml_transforms : k => one(v.parameters) if v.parameters != null && length(v.parameters) > 0 }
 }
 output "glue_ml_transforms_region" {
   description = "Map of region values across all glue_ml_transforms, keyed the same as var.glue_ml_transforms"
